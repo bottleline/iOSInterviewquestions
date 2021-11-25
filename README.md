@@ -21,7 +21,10 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 [Apple All Videos](https://developer.apple.com/videos/all-videos/)
 
 ## iOS
-- Bounds 와 Frame 의 차이점을 설명하시오.
+# Bounds 와 Frame 의 차이점을 설명하시오.
+bound : 자신의 위치를 기준으로 한다 원점이 항상 (0,0)
+frame : SuperView 의 위치를 기준으로 한다.  
+
 - 실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.
 - 앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?
 - 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
