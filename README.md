@@ -34,22 +34,30 @@ Frame 은 SuperView 의 위치를 기준으로 좌표계를 설정합니다. Sup
 ```
 ### 앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?
 ```
-CoreData 라고 하며 관계형 데이터베이스를 기반으로 데이터를 저장하는 Sqlite 방식과   비교적 적은 데이터를 저장하는 In Memory 방식   모든 데이터를 한번에 저장하고 한번에 꺼내는 Binary Storage 방식이 있습니다.
+CoreData 라고 하며
+관계형 데이터베이스를 기반으로 데이터를 저장하는 Sqlite 방식과
+비교적 적은 데이터를 저장하는 In Memory 방식
+모든 데이터를 한번에 저장하고 한번에 꺼내는 Binary Storage 방식이 있습니다.
 ```
 ### 앱 화면의 콘텐츠를 표시하는 로직과 관리를 담당하는 객체를 무엇이라고 하는가?
 ```
 ViewController 라고합니다. 모든앱에는 기본적으로 하나의 뷰컨트롤러를 가지고있습니다.  
 뷰컨트롤러의 종류는 ContentViewController 와 ContainerViewController 가있습니다.  
-ContenteViewController 는 UIViewController, UITableViewController, UICollectionViewController   등 모든 뷰를 하나의 씬에서 통제합니다.  
-ContainerViewController 는 NavigationController, TabbarController, PageViewController   등 부모뷰 밑에 하나이상의 자식뷰를 포함하고 있습니다.
+ContenteViewController 는 UIViewController, UITableViewController, UICollectionViewController
+등 모든 뷰를 하나의 씬에서 통제합니다.  
+ContainerViewController 는 NavigationController, TabbarController, PageViewController
+등 부모뷰 밑에 하나이상의 자식뷰를 포함하고 있습니다.
 ```
 ### App thinning에 대해서 설명하시오.
 ```
 애플리케이션이 디바이스에 설치될 때 앱스토어와 운영체제가 디바이스의 특성에 맞체 최적화하여 앱을 설치하는 기술입니다. 
 앱시닝에는 슬라이싱, 비트코드, 주문형 리소스 가 있습니다.  
-슬라이싱은 여러 디바이스에 대해 각각 조각 애플리케이션 번들을 생성하고, 해당디바이스에 가장 적합한 조각을 전달하는 기술입니다.  
-비트코드는 기계어로 번역되기 이전단계의 중간표현으로 비트코드를 사용하여   업로드하면 앱스토어에서 컴파일 단계를 한단계 더 거쳐 디바이스에 최적화 되어 설치됩니다.  
-주문형 리소스는 필요할때 다운로드 받는다는 것입니다. 게임을 예로들어 현재보다 상위단계의 데이터는 아직 다운받지 않는 방식입니다.
+슬라이싱은 여러 디바이스에 대해 각각 조각 애플리케이션 번들을 생성하고, 
+해당디바이스에 가장 적합한 조각을 전달하는 기술입니다.  
+비트코드는 기계어로 번역되기 이전단계의 중간표현으로 비트코드를 사용하여
+업로드하면 앱스토어에서 컴파일 단계를 한단계 더 거쳐 디바이스에 최적화 되어 설치됩니다.  
+주문형 리소스는 필요할때 다운로드 받는다는 것입니다. 게임을 예로들어 현재보다
+상위단계의 데이터는 아직 다운받지 않는 방식입니다.
 ```
 ###
 - 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
