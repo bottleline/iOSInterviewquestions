@@ -21,13 +21,14 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 [Apple All Videos](https://developer.apple.com/videos/all-videos/)
 
 ## iOS
-```
 ### Bounds 와 Frame 의 차이점을 설명하시오.
+```
 bound : 자신의 위치를 기준으로 한다 원점이 항상 (0,0)
 frame : SuperView 의 위치를 기준으로 한다.  
 ```
-```
 ### 실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.
+
+```
 하드웨어 : 블루투스, 카메라, 지문, GPS, 마이크, 전화 불가능
 소프트웨어 : APNS 불가능, Hand Off 불가능
 기타 : 실제 스마트폰 기기에서 효율성을 측정할 수 
