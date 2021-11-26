@@ -115,7 +115,9 @@ sceneDidBecomeActive 는 sceneWillEnterForeground 직후 호출되며 scene 을 
 sceneWillResignActive, SceneDidEnterBackground 는 백그라운드로 진입할시 호출됩니다.
 sceneDidDisconnect 는 scene 이 백그라운드로 진입할때마다 리소스 확보를위해 scene 을 삭제하는 것을 결정합니다.
 ```
-- UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
+### UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
+```
+```
 ### App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 ```
 Not running 앱이 시스템에 의해 종료된 상태입니다.
@@ -154,13 +156,52 @@ background - 백그라운드에서 작용하며 사용자가 볼수없는 작업
 unspecified - Qos 정보가 없음을 나타냄. environment qos 를 추론해야한다는 단서를 시스템에 
 ```
 ###
-- iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인가?
-- Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
-- Delegate란 무언인가 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오.
-- NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
-- UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?
-- App Bundle의 구조와 역할에 대해 설명하시오.
-- 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
+### iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인가?
+```
+UIKit - 앱의 기본적인 UI를 만드는데 필요한 툴을 제공해주는 FrameWork 입니다.
+앞에 UI가 붙은 클래스들을 사용하려면 UIKit 프레임워크를 import 해야합니다.
+제스처, 애니메이션, 그림그리기, 이미지 처리, 텍스트 처리등을 합니다
+```
+### Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
+```
+CocoaTouchFramework 에 포함되어있는 프레임워크중 하나로 String, Int 등 원시데이터 타입과
+컬렉션타입 및 운영체제 서비스를 사용해 앱의 기본적인 기능을 관리하는 프레임워크입니다.
+```
+### Delegate란 무언인가 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오.
+```
+클래스의 기능을 다른 클래스에게 구현하도록 권한을 위임하는 것으로 
+UITableView 같이 변동성 있는 데이터를 표시하는 경우 
+UITableViewController 에서 디테일한 사항 구현을 데이터를 다루는 클래스에게 위임할수 있습니다.
+참조변수를 사용하기때문에 retain이 가능합니다.
+```
+### NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
+```
+사용자나 앱 내부적으로 알림을 주고받을때 NotificationCenter에 알림을 등록하여 대상에게 시그널을 보냅니다.
+앱 내부적으로 객체간 알림을 주고받을대 NotificationCenter 에 identifier를 등록하고 observe 하여 
+객체간 서로 알림을 주고받을 수 있으며
+사용자에게 push 알림을 보내기위해 trigger에 request 를 등록하기도 합니다.
+내부지역 적으로 LocalNotificationCenter를 이용하며
+```
+### UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?
+```
+메인스레드이며 모든 UI변경사항은 메인스레드를 거쳐 수정되어야 합니다.
+global 스레드나 기타 백그라운드 스레드를 사용하면 오류가 납니다.
+```
+### App Bundle의 구조와 역할에 대해 설명하시오.
+```
+애플리케이션 번들은 애플리케이션의 성공적인 작동에 필요한 모든것을 저장합니다.
+ios/mac 플랫폼에 따라 번들의 구조는 다양하지만 사용법은 동일합니다.
+
+구조에는
+AppName,
+Icon, 
+InfoPropertyList, 
+Launch image(애플리케이션의 초기 인터페이스를 특정방향으로 표시하는 하나이상의 이미지),
+MainWindow(시작시 로드할 기본 인터페이스 객체),
+Setting.bundle (애플리케이션에 추가할 애플리케이션 별 기본 설정이 포함된 특별한 유형의 플러그인)
+커스텀리소스파일 (nib파일, 이미지, 사운드, 설정파일 )
+```
+### 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
 - 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
 - View 객체에 대해 설명하시오.
 - UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
