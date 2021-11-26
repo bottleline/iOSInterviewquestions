@@ -116,7 +116,14 @@ sceneWillResignActive, SceneDidEnterBackground 는 백그라운드로 진입할�
 sceneDidDisconnect 는 scene 이 백그라운드로 진입할때마다 리소스 확보를위해 scene 을 삭제하는 것을 결정합니다.
 ```
 - UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
-- App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
+### App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
+```
+Not running 앱이 시스템에 의해 종료된 상태입니다.
+Inactive - 앱이 Foreground 에서 동작하지만 이벤트를 처리하지 않습니다.
+active 상태는 앱이 실행중일때의 상태입니다.
+Background 상태는 앱이 백그라운드에 진입 한 상태이며 음악이나 통화같은 백그라운드 작업을 처리합니다.
+Suspend 상태는 백그라운드 상태에서 아무런 코드도 실행되지 않는 상태입니다.
+```
 ###
 - NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.
 - GCD API 동작 방식과 필요성에 대해 설명하시오.
