@@ -125,9 +125,34 @@ Background 상태는 앱이 백그라운드에 진입 한 상태이며 음악이
 Suspend 상태는 백그라운드 상태에서 아무런 코드도 실행되지 않는 상태입니다.
 ```
 ###
-- NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.
-- GCD API 동작 방식과 필요성에 대해 설명하시오.
-- Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.
+### NSOperationQueue 와 GCD Queue 의 차이점을 설명하시오.
+```
+Multi threading 을 위한 API 에는 C 기반의 GCD 와 object-C 기반의 NSOpreation 이 있습니다.
+NSOperation 은 GCD와 비교했을땐 추가적인 오버해드가 있으나, 다양한 작업들 가운데 
+의존성을 추가할 수 있고, 재사용, 취소, 중지시킬 수 있다.
+```
+### GCD API 동작 방식과 필요성에 대해 설명하시오.
+```
+GCD 는 백그라운드에서 스레드를 관리하면서 동시적으로 작업을 실행시켜주는 저수준 API 입니다.
+DispatchQueue
+Serial Dispatch Queue
+Concurrency Dispatch Queue
+Main Dispach Queue 
+등에 작업을 등록하여 처리합니다
+DispatchQueue 는 FIFO 방식으로 작업을 처리
+Serial Dispatch Queue 는 순차적으로 작업처리,
+Concurrency DispatchQueue 는 순서에 상관없이 비동기적으로 작업을 처리
+Main DispatchQueue 는 앱의 메인스레드에서 작업을 실행할수 있는 시리얼 큐입니다.
+```
+### Global DispatchQueue 의 Qos 에는 어떤 종류가 있는지, 각각 어떤 의미인지 설명하시오.
+```
+UserInteractive - 메인스레드에서 작동하며 UI 새로고침 또는 애니메이션 과같이 사용자와 상호작용하는 작업
+UserInitiated - 사용자가 시작한 작업이며, 저장된 문서를 열거나 사용자 인터페이스에서 무언가를 클릭할때 상호작용작업을 수행
+default - user Initiate 와 utility 사이의 우선순위를 가짐. qos 정보가 할당되지 않으면 defalut 로 설정됨
+utility - 데이터 다운로드 등 즉각적인 결과가 필요하지 않은 작업, 시간이 오래걸릴수 있음
+background - 백그라운드에서 작용하며 사용자가 볼수없는 작업들을 수행, 에너지효율에 중점을 둠
+unspecified - Qos 정보가 없음을 나타냄. environment qos 를 추론해야한다는 단서를 시스템에 
+```
 ###
 - iOS 앱을 만들고, User Interface를 구성하는 데 필수적인 프레임워크 이름은 무엇인가?
 - Foundation Kit은 무엇이고 포함되어 있는 클래스들은 어떤 것이 있는지 설명하시오.
