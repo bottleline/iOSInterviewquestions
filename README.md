@@ -202,14 +202,91 @@ Setting.bundle (애플리케이션에 추가할 애플리케이션 별 기본 �
 커스텀리소스파일 (nib파일, 이미지, 사운드, 설정파일 )
 ```
 ### 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
-- 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
-- View 객체에 대해 설명하시오.
-- UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
-- UIWindow 객체의 역할은 무엇인가?
-- UINavigationController 의 역할이 무엇인지 설명하시오.
-- TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.
-- 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
-- setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
+```
+UIResponder 이며
+역할은 
+기본데이터의 변경에 대한 응답으로 뷰의 콘텐츠를 업데이트,
+뷰와 사용자의 상호작용에 응답,
+뷰 크기조정 및 전체 인터페이스 레이아웃 관리,
+앱에서 다른 뷰 컨트롤러를 포함한 다른 객체와 조정
+```
+### 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
+```
+UIView 를 상속한 클래스를 생성한 후
+생성자에 추가하고자 하는 view 객체를 추가합니다.
+```
+### View 객체에 대해 설명하시오.
+```
+사용자 인터페이스의 기본 구성요소입니다.
+화면의 직사각형 영역에 대한 콘텐츠를 관리하는 객체로 
+모든 뷰에 공통적인 동작을 정의하며 모든 뷰 클래스의 상위 클래스입니다.
+```
+### UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
+```
+ UIView 는 화면에 그리는 작업과 애니메이션 등의 시각정 행위를 직접 처리하지 않고 
+ CoreAnimation 클래스인 CALayer 에게 위임하는데 UIView 는 해당타입의 layer 프로퍼티를 가지고있다.
+ 그림자, 테두리, 3D 변형, 마스킹, 애니메이션등의 작업을 처리한다
+```
+### UIWindow 객체의 역할은 무엇인가?
+```
+사용자 인터페이스에 배경을 제공하고 중요한 이벤트처리행동을 제공하는 객체입니다.
+앱 View의 프레젠테이션에 중요하며 스크린에 나타나는 모든 View 는 윈도우로 묶여있습니다.
+앱의 콘텐츠를 표시할 기본 영역을 제공해주며 
+추가로 표시할 콘텐츠가 생기면 윈도우를 추가합니다.
+```
+### UINavigationController 의 역할이 무엇인지 설명하시오.
+```
+여러개의 사용자 뷰를 Stack에 순서대로 저장하여 화면을 이동할수 있도록 관리해주는 객체입니다.
+네비게이션 바와 툴바를 표시해주기도 합니다.
+navigation item 을 수정하여 버튼과 타이틀 등을 수정할수 있습니다.
+```
+
+### TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.
+```
+TableView 의 UITableView Delegate 는 UITableView Delegate 프로토콜을 채택하여 
+테이블 뷰의 시각적인 요소를 관리합니다. 필수 구현 메소드는 없습니다.
+
+TableView 의 TableViewDataSource Delegate 는 TableViewDataSoucreDelegate 프로토콜을 채택하여
+테이블의 데이터와 관련된 부분을 관리합니다.
+cellRowAt 메소드
+numberOfRowInSection 메소드
+를 구현해야합니다.
+```
+### 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
+```
+cellForRowAt 메소드에서
+switch 문을 사용해 테이블뷰의 종류를 구분하거나
+tag 값을 사용해 테이블뷰를 구분합니다.
+```
+
+### setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
+```
+layoutSubviews는 UIView의 인스턴스 메소드입니다. 이 메소드가 호출되면 해당 view와 subView들이
+모두 연달아 호출됩니다. 이는 비용이 많이 들기 때문에 직접 호출하는것은 지양해야 합니다. 
+이 메소드는 view의 값이 재계산되어야하는 적절한 시점에 시스템에 의해 자동으로 호출됩니다.
+
+추가로 UIViewController내의 view가 layoutSubviews() 메소드를 호출하게 되면 값이 갱신되고 이후 
+UIViewController의 viewDidLayoutSubviews()가 호출됩니다. 
+갱신된 view의 값에 의존하는 행위들은 이 메소드 내에 명시해줘야 합니다.
+
+다음과 같은 상황에서는 시스템이 자동으로 size 혹은 position이 변경되야하는 view라고 체크를 하고 
+update cycle에서는 layoutSubviews()가 호출되어 체크된 view들의 변경사항을 반영합니다.
+
+- view의 크기를 조절할 때
+- Subview를 추가할 때
+- 사용자가 UIScrollView를 스크롤할 때
+- 기기를 회전할 때
+- view의 autolayout constraint값을 변경할 때
+위에 나열된 시점에는 자동으로 update cycle에서 layoutSubviews()를 호출하는 행위를 예약하는 것입니다. 
+
+setNeedsLayout()메소드와 setNeedsDisplay() 메소드 모두 호출 즉시 실행되지 않고 
+다음 update cycle에 변경사항이 적용됩니다. 
+- setNeedsLayout은 layoutSubview메소드를, 
+- setNeedsDisplay는 draw메소드를 시스템이 호출하게끔 유도한다. 
+
+- setNeedsLayout()메소드는 모든 핸들러가 종료되고 권한이 main run loop로 돌아오는 시점에 view의 position이나 layout에 관한 변화를 적용시키고 
+- setNeedsDisplay()메소드는 다음 드로잉 사이클이 오면 그 때 쌓여있는 그려야할 컨텐츠들을 동시에 적용시킵니다.
+```
 ###
 - NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
 - URLSession에 대해서 설명하시오.
