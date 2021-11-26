@@ -288,19 +288,88 @@ setNeedsLayout()메소드와 setNeedsDisplay() 메소드 모두 호출 즉시 �
 - setNeedsDisplay()메소드는 다음 드로잉 사이클이 오면 그 때 쌓여있는 그려야할 컨텐츠들을 동시에 적용시킵니다.
 ```
 ###
-- NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
-- URLSession에 대해서 설명하시오.
-- prepareForReuse에 대해서 설명하시오.
-- 다크모드를 지원하는 방법에 대해 설명하시오.
+### NSCache와 딕셔너리로 캐시를 구성했을때의 차이를 설명하시오.
+```
+NSChache 는 메모리 관리가 기본적으로 제공된다
+다른 앱에서 메모리를 사용하려고 하면 캐시되어있던 데이터를 지우고 메모리를 해제한다
+
+NSCache 는 Tread-safe 하다
+캐시데이터를 읽고 쓰고 지울때마다 lock을 해줄 필요가 없다.
+반면 NSDictionary 는 Thrade-safe 하지 않기 때문에 데이터 접근할때 따로 처리해줘야한다.
+
+NSDictionary 는 Key값을 복사하지만 NSCache는 retain 카운트만 증가시킨다. 
+복사를 지원하지 않는 객체까지 포용한다.
+```
+### URLSession에 대해서 설명하시오.
+```
+URLSesison 은 iOS 에서 제공해주는 HTTP를 이용한 네트워킹을 통해 데이터를 주고받을수 있게
+도와주는 API 클래스입니다. URLSession은 thread-safty 하기때문에 어떤 스레드에서든
+자유롭게 Session 과 Task 를 생성할수 있습니다.
+Session 의 configuration 에는
+Default - 기본적인 네트워크 구성
+Ephemeral - 쿠키와 캐시를 저장하지 않을때
+Background - 앱이 백그라운드에서 컨텐츠를 다운로드하거나 업데이트 할 경우 
+가 있으며
+
+Task 에는
+dataTask - 데이터를 받는 작업수행시 - background 지원 불가
+downloadTask - 데이터다운로드
+uploadTask - 데이터 업로드
+가있습니다.
+success code 는 200~299 까지 입니다.
+```
+### prepareForReuse에 대해서 설명하시오.
+```
+dequeueReusableCell 메소드를 통해 셀이 재사용 되면서 기존에 사용되던 투명값이나 체크박스 값이 
+원하지 않는 셀에 또다시 나타나는경우 prepareForReuse 메서드를 사용해 셀의 속성을 초기화시켜서
+방금 언급한 현상을 방지하기위해 사용합니다.
+```
+### 다크모드를 지원하는 방법에 대해 설명하시오.
+```
+Assest 에 색상을 만들 때 any 칼라와 darkmode 칼라를 같이 만들어서 다크모드와 라이트모드에 따른
+색상을 구별할 수 있습니다.
+또한 코드로 UITraitCollection.userInterfaceStyle == .dark 와같이 케이스를 나누어
+색상을 변경할 수 있습니다,
+viewdidload 메소드에서 view.overrideUserInterfaceStyle = .dark 와 같이 하여 
+다크모드 지원을 안할수도 있습니다.
+```
 
 ## Autolayout
-- 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
-- hugging, resistance에 대해서 설명하시오.
-- Intrinsic Size에 대해서 설명하시오.
-- 스토리보드를 이용했을때의 장단점을 설명하시오.
-- Safearea에 대해서 설명하시오.
-- Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
-
+### 오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
+```
+Anchor를 이용한 방법과
+NsLayoutConstraint를 이용한 방법
+Visual Format Language 를 이용한 방법이 있습니다. 
+특정 문법에 맞게 스트링을 구성하여 오토레이아웃을 정의하는 방식입니다. 
+```
+### hugging, resistance에 대해서 설명하시오.
+```
+어떤 레이아웃에 제약조건이 있을 때 허깅 우선순위가 낮은 뷰가 레이아웃의 빈공간에 맞춰 늘어나게 됩니다.
+resistance 우선순위가 낮은 뷰는 레이아웃의 제약조건에 따라 크기가 줄어듭니다.
+```
+### Intrinsic Size에 대해서 설명하시오.
+```
+뷰의 컨텐츠의 맞추어 생성된 레이아웃의 기본적인 크기입니다.
+버튼이나 레이블은 타이틀과 텍스트의 값에 따라 인트리식사이즈가 결정됩니다.
+```
+### 스토리보드를 이용했을때의 장단점을 설명하시오.
+```
+레이아웃을 구성했을때 직접적으로 구성화면을 볼수 있으며 
+제공되는 인터페이스를 사용하여 편리하게 뷰를 제작할수 있는 장점이 있습니다.
+단점은 레이아웃이 많이 들어가는 화면은 뷰를 수정하기 번거로울수 있으며 
+앱이 커질수록 속도가 느려집니다 -> 스토리보드를 분리해서 해결
+또한 코드로 생성한 뷰에 비해 재사용이 어려우며
+스토리보드로 불가능한 작업이 있습니다 예) 그림자나 경계선 색
+```
+### Safearea에 대해서 설명하시오.
+```
+탭바나 네비게이션바, 상태바 등이 있는곳을 앱의 화면과 겹치는 부분을 피하기위해 설정한 구역입니다.
+```
+### Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
+```
+left 는 사용자가 바라보는 왼쪽화면이며
+leading 은 글자가 시작하는 방향입니다.
+```
 ## Swift
 - struct와 class와 enum의 차이를 설명하시오.
 - class의 성능을 향상 시킬수 있는 방법들을 나열해보시오.
