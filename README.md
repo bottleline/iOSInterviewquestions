@@ -78,7 +78,8 @@ ForeGround 상태에서는 메모리 및 기타 시스템 리소스 권한에 �
 시스템은 이러한 우선순위를 만족시키도록 Background 에 있는 앱을 종료시키기도 합니다.
 Background 상태에서는 최소한의 메모리 사용을 해야하합니다.
 
-application(didFinishLaunching) -> 앱이 처음 시작될 떄
+application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
+willFinishLaunchingWithOptions -> 앱이 최초 실행될때
 applicationWillResignActive -> 앱이 Active 에서 InActive 로 전환될때
 ApplicationDidEnterBackground -> 앱이 백그라운드 상태일때
 applicationWillEnterForeground 앱이 foreground 로 진입할때
@@ -86,9 +87,34 @@ applicationDidbacomActive 앱이 active 상태가 되어 실행중일때
 applicationWillTerminate 앱이 종료될 
 ```
 
-- 상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.
-- 앱이 In-Active 상태가 되는 시나리오를 설명하시오.
-- scene delegate에 대해 설명하시오.
+### 상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.
+```
+![image](https://user-images.githubusercontent.com/42457589/143516394-45e78432-1f52-41cb-91bd-5824a1dafe75.png)
+
+application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
+willFinishLaunchingWithOptions -> 앱이 최초 실행될때
+applicationWillResignActive -> 앱이 Active 에서 InActive 로 전환될때
+ApplicationDidEnterBackground -> 앱이 백그라운드 상태일때
+applicationWillEnterForeground 앱이 foreground 로 진입할때
+applicationDidbacomActive 앱이 active 상태가 되어 실행중일때
+applicationWillTerminate 앱이 종료될 
+```
+### 앱이 In-Active 상태가 되는 시나리오를 설명하시오.
+```
+사용자가 홈버튼은 누르거나 백그라운드로 진입하면 
+Appdelegate 에서 applicationWillasign 메소드를 호출하여 Active 상태에서 In-Active 상태로 
+전환됩니다. 그후 백그라운드로 진입하면 ApplicationDidEnterBackground 메소드가 호출됩니다.
+```
+### scene delegate에 대해 설명하시오.
+```
+ios13 부터 AppDelegate 의 역할이 AppDelegate(App Life Cycle, Session Life Cycle) 와 SceneDelegate(Scene Life Cycle) 로 나뉘어졌습니다.
+SceneDegate 는 윈도우에 Scene의 표시를 처리하고 관리합니다.
+scene(WillConnectTo) 메소드는 UISceneLifeCycle 의 첫번째 호출되는 메소드로 UIWindow 를 만들고 루트 뷰 컨트롤러를 설정합니다.
+willEnterForeground 는 앱이 Foreground 로 전활될때 scene을 설정합니다.
+sceneDidBecomeActive 는 sceneWillEnterForeground 직후 호출되며 scene 을 사용할 준비를 마칩니다.
+sceneWillResignActive, SceneDidEnterBackground 는 백그라운드로 진입할시 호출됩니다.
+sceneDidDisconnect 는 scene 이 백그라운드로 진입할때마다 리소스 확보를위해 scene 을 삭제하는 것을 결정합니다.
+```
 - UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
 - App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 ###
