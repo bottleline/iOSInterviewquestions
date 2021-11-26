@@ -60,9 +60,23 @@ ContainerViewController 는 NavigationController, TabbarController, PageViewCont
 상위단계의 데이터는 아직 다운받지 않는 방식입니다.
 ```
 ###
-- 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
-- @Main에 대해서 설명하시오.
-- 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
+### 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
+```
+결론 : UIApplication 싱글턴 객체가 생성됨
+모든 iOS 앱에는 정확히 하나의 UIApplication 인스턴스 (또는 매우 드물게 UIApplication의 하위 클래스)가 있습니다.. 
+앱이 시작되면 시스템은 UIApplicationMain(_:_:_:_:) 함수를 호출합니다. 
+이 함수는 싱글톤 UIApplication 객체를 만들고 공유 클래스 메서드를 호출하여 객체에 액세스합니다.
+```
+### @Main에 대해서 설명하시오.
+```
+Swift 5.3 부터는 @main(@UIApplicationMain 대신에)을 사용한다.
+UIKit 기반 앱의 main entry point이다.
+```
+### 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
+```
+
+```
+
 - 상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.
 - 앱이 In-Active 상태가 되는 시나리오를 설명하시오.
 - scene delegate에 대해 설명하시오.
