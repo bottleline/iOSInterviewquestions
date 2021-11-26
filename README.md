@@ -74,7 +74,16 @@ UIKit 기반 앱의 main entry point이다.
 ```
 ### 앱이 foreground에 있을 때와 background에 있을 때 어떤 제약사항이 있나요?
 ```
+ForeGround 상태에서는 메모리 및 기타 시스템 리소스 권한에 높은 우선순위를 가지며
+시스템은 이러한 우선순위를 만족시키도록 Background 에 있는 앱을 종료시키기도 합니다.
+Background 상태에서는 최소한의 메모리 사용을 해야하합니다.
 
+application(didFinishLaunching) -> 앱이 처음 시작될 떄
+applicationWillResignActive -> 앱이 Active 에서 InActive 로 전환될때
+ApplicationDidEnterBackground -> 앱이 백그라운드 상태일때
+applicationWillEnterForeground 앱이 foreground 로 진입할때
+applicationDidbacomActive 앱이 active 상태가 되어 실행중일때
+applicationWillTerminate 앱이 종료될 
 ```
 
 - 상태 변화에 따라 다른 동작을 처리하기 위한 앱델리게이트 메서드들을 설명하시오.
