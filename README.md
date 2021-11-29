@@ -166,6 +166,7 @@ UIKit - 앱의 기본적인 UI를 만드는데 필요한 툴을 제공해주는 
 ```
 CocoaTouchFramework 에 포함되어있는 프레임워크중 하나로 String, Int 등 원시데이터 타입과
 컬렉션타입 및 운영체제 서비스를 사용해 앱의 기본적인 기능을 관리하는 프레임워크입니다.
+String ,date, collection 등을 사용할때 필요합니다.
 ```
 ### Delegate란 무언인가 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오.
 ```
