@@ -78,8 +78,8 @@ ForeGround 상태에서는 메모리 및 기타 시스템 리소스 권한에 �
 시스템은 이러한 우선순위를 만족시키도록 Background 에 있는 앱을 종료시키기도 합니다.
 Background 상태에서는 최소한의 메모리 사용을 해야하합니다.
 
-application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
 willFinishLaunchingWithOptions -> 앱이 최초 실행될때
+application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
 applicationWillResignActive -> 앱이 Active 에서 InActive 로 전환될때
 ApplicationDidEnterBackground -> 앱이 백그라운드 상태일때
 applicationWillEnterForeground 앱이 foreground 로 진입할때
@@ -91,8 +91,8 @@ applicationWillTerminate 앱이 종료될
 ```
 ![image](https://user-images.githubusercontent.com/42457589/143516394-45e78432-1f52-41cb-91bd-5824a1dafe75.png)
 
-application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
 willFinishLaunchingWithOptions -> 앱이 최초 실행될때
+application(didFinishLaunching) -> 앱이 사용자 화면에 보여지기 직전에
 applicationWillResignActive -> 앱이 Active 에서 InActive 로 전환될때
 ApplicationDidEnterBackground -> 앱이 백그라운드 상태일때
 applicationWillEnterForeground 앱이 foreground 로 진입할때
