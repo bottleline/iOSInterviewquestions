@@ -213,8 +213,12 @@ UIResponder 이며
 ```
 ### 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
 ```
-UIView 를 상속한 클래스를 생성한 후
+UIView 를 상속한 클래스를 생성한 후 xib 파일을 연결합니다.
+그리고 bundle.loadNibNameed 에 이름을 등록하고
 생성자에 추가하고자 하는 view 객체를 추가합니다.
+
+혹은 클래스 앞에 @IBDesignable 키워드를 추가합니다.
+속성값을 변경하려면 속성값 앞에 @IBInspectable 키워드를 추가합니다.
 ```
 ### View 객체에 대해 설명하시오.
 ```
