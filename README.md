@@ -452,7 +452,9 @@ static let shared = ClassName()
 KVO 는 A 객체에서 B 객체의 변화됨을 감지할수 있는 패턴입니다.
 변수에 코드를 붙여 변수가 변경될때마다 코드가 실행되도록 하는 방법입니다.
 will set 과 didset 과 유사하지만 타입 정의 밖에서 옵저버를 추가한다는 점이 다릅니다.
+NSObject 클래스를 상속하며
 변수 앞에 @objc dynamic 을 붙여서 선언합니다.
+.observe()와 핸들러를 통해서 변수의 변화를 관찰합니다.
 ```
 ### Delegates와 Notification 방식의 차이점에 대해 설명하시오
 ```
