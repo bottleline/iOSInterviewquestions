@@ -117,6 +117,9 @@ sceneDidDisconnect 는 scene 이 백그라운드로 진입할때마다 리소스
 ```
 ### UIApplication 객체의 컨트롤러 역할은 어디에 구현해야 하는가?
 ```
+UIApplication 객체: UIApplication 객체는 event loop와 그 밖의 앱의 고차원 행위를 관리한다. 
+또한 앱의 핵심 변동사항 및 몇몇 특별한 이벤트(예: incoming push)를 개발자가 만든 커스텀 객체 'delegate'에 보고 한다.
+
 ```
 ### App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 ```
